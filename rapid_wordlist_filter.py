@@ -57,9 +57,9 @@ async def check_word(session: ClientSession, words: list, not_words: list, word:
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description=
-                                     'Read a newline-delimited file of words and check every word against '
-                                     'merriam-webster.com before outputting to a new file')
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+                                     description='Read a newline-delimited file of words and check every word against '
+                                                 'www.merriam-webster.com before writing to a new file.')
     parser.add_argument('infile', help='Input wordlist')
     parser.add_argument('outfile', help='Output wordlist')
     parser.add_argument("-i", "--invalid_outfile",
