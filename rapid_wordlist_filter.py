@@ -27,11 +27,10 @@ async def filter_file(infile,
                 if requests_sent - (len(words) + len(not_words)) > max_in_flight:
                     await asyncio.gather(*tasks, return_exceptions=True)
                 async with limiter:
-                    task = asyncio.ensure_future(check_word(
-                        session=session,
-                        words=words,
-                        not_words=not_words,
-                        word=word.strip()))
+                    task = asyncio.ensure_future(check_word(session=session,
+                                                            words=words,
+                                                            not_words=not_words,
+                                                            word=word.strip()))
                     tasks.append(task)
                     requests_sent = requests_sent + 1
                     if requests_sent % 1000 == 0:
